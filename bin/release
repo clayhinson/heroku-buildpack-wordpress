@@ -4,7 +4,7 @@
 cat <<EOF
 ---
 addons:
-  - cleardb:ignite
+  - cleardb:punch
   - sendgrid:starter
   - memcachier:dev
   - scheduler:standard
