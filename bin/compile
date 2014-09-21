@@ -33,7 +33,7 @@ if [ -z "$PHP_VERSION" ]; then
 fi
 
 if [ -z "$WORDPRESS_VERSION" ]; then
-  WORDPRESS_VERSION=3.9.1
+  WORDPRESS_VERSION=3.9.2
 fi
 
 if [ -z "$S3_BUCKET" ]; then
@@ -101,10 +101,16 @@ cd ${BUILD_DIR}
 cat >>bin/setup.sh <<EOF
 #!/usr/bin/env bash
 
-cp -rf /app/config/* /app
+# reorganize the directory structure as expected
+mkdir /app/public
+cp -rf /app/* /app/public/
+mv /app/public/heroku /app/vendor
 
 cp /app/vendor/php/php/fpm/status.html /app/public/status.html
 cp /app/vendor/php/apc.php /app/public/apc.php
+mv /app/vendor/config/wp-config.php /app/public/
+mv /app/vendor/config/phpinfo.php /app/public/
+rmdir /app/vendor/config
 erb /app/vendor/nginx/conf/wordpress.conf.erb > /app/vendor/nginx/conf/wordpress.conf
 chmod 755 /app/public/wp-content
 

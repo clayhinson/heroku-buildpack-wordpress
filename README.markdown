@@ -2,6 +2,11 @@
 
 ### This is a Heroku buildpack for running [WordPress](http://wordpress.org) on [Heroku](http://heroku.com)
 
+### Modified for use on the ChaoticMoon website
+![](http://www.chaoticmoon.com/wp-content/themes/chaotic/favicon.png)
+
+
+
 It uses this [WordPress](http://github.com/mchung/wordpress-on-heroku) project template to bootstrap a highly tuned WordPress site built on the following stack:
 
 * `nginx` - Nginx for serving web content.  Built specifically for Heroku.  [See compile options](https://github.com/mchung/heroku-buildpack-wordpress/blob/master/support/package_nginx).
