@@ -102,15 +102,17 @@ cat >>bin/setup.sh <<EOF
 #!/usr/bin/env bash
 
 # reorganize the directory structure as expected
-mkdir /app/public
-cp -rf /app/* /app/public/
-mv /app/public/heroku /app/vendor
+
+cp -rf /app/config/* /app/
+cp /app/favico* /app/public/
+#replace placeholder with real wp-content
+rm -rf /app/public/wp-content
+mv -f /app/wp-content /app/public/
 
 cp /app/vendor/php/php/fpm/status.html /app/public/status.html
 cp /app/vendor/php/apc.php /app/public/apc.php
 mv /app/vendor/config/wp-config.php /app/public/
 mv /app/vendor/config/phpinfo.php /app/public/
-rmdir /app/vendor/config
 erb /app/vendor/nginx/conf/wordpress.conf.erb > /app/vendor/nginx/conf/wordpress.conf
 chmod 755 /app/public/wp-content
 
