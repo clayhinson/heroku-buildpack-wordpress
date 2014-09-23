@@ -6,6 +6,16 @@
 ![](http://www.chaoticmoon.com/wp-content/themes/chaotic/favicon.png)
 
 
+Added: `create_s3_tarball.sh` - Creates an archive of the repo for
+uploading to S3, since Heroku can't load directly from our bitbucket
+repos.
+
+
+---
+
+
+### ORIGINAL README
+
 
 It uses this [WordPress](http://github.com/mchung/wordpress-on-heroku) project template to bootstrap a highly tuned WordPress site built on the following stack:
 
