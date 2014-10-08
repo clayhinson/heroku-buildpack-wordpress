@@ -108,6 +108,13 @@ cp /app/favico* /app/public/
 #replace placeholder with real wp-content
 rm -rf /app/public/wp-content
 mv -f /app/wp-content /app/public/
+# move memcached plugins for use on heroku into place
+mv /app/vendor/plugins/advanced-cache.php /app/public/wp-content/
+mv /app/vendor/plugins/object-cache.php /app/public/wp-content/
+mv /app/vendor/plugins/memcachier /app/public/wp-content/plugins/
+
+# remove local vm setup file
+rm /app/cm-website-vagrant.sh
 
 cp /app/vendor/php/php/fpm/status.html /app/public/status.html
 cp /app/vendor/php/apc.php /app/public/apc.php
