@@ -117,9 +117,19 @@ mv /app/vendor/plugins/memcachier /app/public/wp-content/plugins/
 rm /app/cm-website-vagrant.sh
 
 cp /app/vendor/php/php/fpm/status.html /app/public/status.html
-cp /app/vendor/php/apc.php /app/public/apc.php
-mv /app/vendor/config/wp-config.php /app/public/
-mv /app/vendor/config/phpinfo.php /app/public/
+#cp /app/vendor/php/apc.php /app/public/apc.php
+mv /app/config/public/wp-config.php /app/public/
+
+# commented out - wp on heroku doesnt like table prefixes
+#use the right table prefix
+#cat /app/config/public/wp-config.php | sed 's/wp_/wp_'$CM_ENV'_/' > /app/public/wp-config.php
+#head -n -1 /app/public/wp-config.php > /app/public/wp-tmp
+#echo '$'"table_prefix='wp_$CM_ENV'.'_';require_once(ABSPATH . 'wp-settings.php');" >> /app/public/wp-tmp
+#rm /app/public/wp-config.php
+#mv /app/public/wp-tmp /app/public/wp-config.php
+
+mv /app/config/public/phpinfo.php /app/public/
+#cat /app/public/wp-config.php
 erb /app/vendor/nginx/conf/wordpress.conf.erb > /app/vendor/nginx/conf/wordpress.conf
 chmod 755 /app/public/wp-content
 
